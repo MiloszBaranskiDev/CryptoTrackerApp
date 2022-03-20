@@ -1,5 +1,5 @@
 const Theme: React.FC = () => {
-  return <div>theme</div>;
+  return <div style={{ color: "pink" }}>theme</div>;
 };
 
 export default Theme;

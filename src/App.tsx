@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import Navbar from "parts/Navbar";
 import "./App.scss";
+import Navbar from "parts/Navbar";
+import CryptoList from "parts/CryptoList";
 
 const theme = {
   colors: {
     main: "#45aaf2",
-    bgc: "#1f1f1f",
+    gray: "#292929",
+    red: "#e74c3c",
+    green: "#27ae60",
   },
 };
 
-function App() {
+const App: React.FC = () => {
+  const [currency, updateCurrency] = useState<string>("USD");
+
   return (
-    <div className="App" style={{ backgroundColor: theme.colors.bgc }}>
+    <div className="App">
       <ThemeProvider theme={theme}>
-        <Navbar />
+        <Navbar updateCurrency={updateCurrency} />
+        <CryptoList currency={currency} />
       </ThemeProvider>
     </div>
   );
-}
+};
 
 export default App;

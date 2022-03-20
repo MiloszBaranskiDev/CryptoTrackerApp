@@ -1,18 +1,21 @@
 import styled from "styled-components";
 
+interface Props {
+  updateCurrency: (arg0: string) => void;
+}
+
 const Select = styled.select`
-  text-transform: uppercase;
   cursor: pointer;
   outline: none;
   border-color: transparent !important;
-  background-color: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  width: 50px;
+  background: transparent;
   font-weight: 600;
   transition: color 0.3s;
   color: white;
+  font-size: 16px;
   &:hover {
     color: ${(props) => props.theme.colors.main};
   }
@@ -22,11 +25,11 @@ const Select = styled.select`
   }
 `;
 
-const Currency: React.FC = () => {
-  const currencies = ["usd", "eur", "pln"];
+const Currency: React.FC<Props> = ({ updateCurrency }) => {
+  const currencies = ["USD", "EUR", "PLN"];
 
   return (
-    <Select>
+    <Select onChange={(e) => updateCurrency(e.target.value)}>
       {currencies.map((currency) => (
         <option key={currency} value={currency}>
           {currency}

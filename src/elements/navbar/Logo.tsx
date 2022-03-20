@@ -5,8 +5,14 @@ const StyledLogo = styled.a`
   font-weight: 600;
   display: flex;
   align-items: center;
-  font-size: 22px;
+  font-size: 18px;
   color: white;
+  margin-right: auto;
+  padding-right: 10px;
+  @media (min-width: 500px) {
+    padding-right: 30px;
+    font-size: 22px;
+  }
   i {
     margin-right: 8px;
     color: ${(props) => props.theme.colors.main};

@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
-const StyledWrapper = styled.div`
+const div = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: any;
+}) => <div className={className}>{children}</div>;
+
+const Wrapper = styled(div)`
   width: 90%;
-  max-width: 1168px;
+  max-width: 1260px;
   margin: 0 auto;
 `;
-
-const Wrapper: React.FC = ({ children }) => {
-  return <StyledWrapper>{children}</StyledWrapper>;
-};
 
 export default Wrapper;
