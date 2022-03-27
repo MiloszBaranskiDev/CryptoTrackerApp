@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Price from "elements/CryptoItem/Price";
 import Identyfication from "elements/CryptoItem/Identification";
@@ -18,9 +19,6 @@ interface Props {
 
 const StyledCryptoItem = styled.div`
   flex-basis: 100%;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   background-color: ${(props) => props.theme.colors.bgc};
   margin-bottom: 20px;
   padding: 20px;
@@ -31,6 +29,14 @@ const StyledCryptoItem = styled.div`
   transition: border-color 0.3s;
   &:hover {
     border-color: ${(props) => props.theme.colors.main};
+  }
+  a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: unset;
   }
   @media (min-width: 500px) {
     flex-basis: 49%;
@@ -58,17 +64,19 @@ const CryptoItem: React.FC<Props> = ({ crypto, currency }) => {
 
   return (
     <StyledCryptoItem>
-      <Identyfication
-        symbol={crypto.symbol}
-        name={crypto.name}
-        icon={crypto.icon}
-      />
-      <Price price={crypto.price} currencySymbol={currencySymbol} />
-      <Changes
-        changeHour={crypto.priceChange1h}
-        changeDay={crypto.priceChange1d}
-        changeWeek={crypto.priceChange1w}
-      />
+      <Link to={`/crypto/${crypto.symbol}`}>
+        <Identyfication
+          symbol={crypto.symbol}
+          name={crypto.name}
+          icon={crypto.icon}
+        />
+        <Price price={crypto.price} currencySymbol={currencySymbol} />
+        <Changes
+          changeHour={crypto.priceChange1h}
+          changeDay={crypto.priceChange1d}
+          changeWeek={crypto.priceChange1w}
+        />
+      </Link>
     </StyledCryptoItem>
   );
 };

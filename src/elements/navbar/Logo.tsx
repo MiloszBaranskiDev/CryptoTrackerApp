@@ -1,14 +1,17 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const StyledLogo = styled.a`
-  text-decoration: none;
+const StyledLogo = styled.h1`
   font-weight: 600;
   display: flex;
   align-items: center;
   font-size: 18px;
-  color: ${(props) => props.theme.colors.typography};
   margin-right: auto;
   padding-right: 10px;
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.typography};
+  }
   @media (min-width: 500px) {
     padding-right: 30px;
     font-size: 22px;
@@ -21,9 +24,11 @@ const StyledLogo = styled.a`
 
 const Logo: React.FC = () => {
   return (
-    <StyledLogo href="/#">
-      <i className="fas fa-coins"></i>
-      CryptoTracker
+    <StyledLogo>
+      <NavLink to="/">
+        <i className="fas fa-coins"></i>
+        CryptoTracker
+      </NavLink>
     </StyledLogo>
   );
 };

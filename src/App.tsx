@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Navbar from "parts/Navbar";
 import CryptoList from "parts/CryptoList";
+import SingleCrypto from "views/SingleCrypto";
 
 const App: React.FC = () => {
   const [currency, updateCurrency] = useState<string>("USD");
@@ -21,16 +23,21 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App" style={{ backgroundColor: theme.colors.bgc_light }}>
-      <ThemeProvider theme={theme}>
-        <Navbar
-          updateCurrency={updateCurrency}
-          isDarkMode={isDarkMode}
-          updateIsDarkMode={updateIsDarkMode}
-        />
-        <CryptoList currency={currency} />
-      </ThemeProvider>
-    </div>
+    <BrowserRouter>
+      <div className="App" style={{ backgroundColor: theme.colors.bgc_light }}>
+        <ThemeProvider theme={theme}>
+          <Navbar
+            updateCurrency={updateCurrency}
+            isDarkMode={isDarkMode}
+            updateIsDarkMode={updateIsDarkMode}
+          />
+          <Routes>
+            <Route path="/" element={<CryptoList currency={currency} />} />
+            <Route path="/crypto/:id" element={<SingleCrypto />} />
+          </Routes>
+        </ThemeProvider>
+      </div>
+    </BrowserRouter>
   );
 };
 
