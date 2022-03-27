@@ -9,7 +9,15 @@ interface Props {
 }
 
 const StyledCryptoList = styled.div`
-  margin: 80px 0;
+  padding: 80px 0;
+  .cryptoListWrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @media (min-width: 500px) {
+      justify-content: space-between;
+    }
+  }
 `;
 
 const CryptoList: React.FC<Props> = ({ currency }) => {
@@ -24,7 +32,7 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
 
   return (
     <StyledCryptoList>
-      <Wrapper>
+      <Wrapper className="cryptoListWrapper">
         {cryptoList?.map((crypto: { [key: string]: any }) => (
           <CryptoItem crypto={crypto} currency={currency} key={crypto.symbol} />
         ))}

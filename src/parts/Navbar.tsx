@@ -7,10 +7,12 @@ import Theme from "elements/Navbar/Theme";
 
 interface Props {
   updateCurrency: (arg0: string) => void;
+  isDarkMode: boolean;
+  updateIsDarkMode: (arg0: boolean) => void;
 }
 
 const StyledNavbar = styled.div`
-  background-color: ${(props) => props.theme.colors.gray};
+  background-color: ${(props) => props.theme.colors.bgc};
   border-bottom: 2px solid;
   border-color: ${(props) => props.theme.colors.main};
   padding: 24px 0;
@@ -20,13 +22,17 @@ const StyledNavbar = styled.div`
   }
 `;
 
-const Navbar: React.FC<Props> = ({ updateCurrency }) => {
+const Navbar: React.FC<Props> = ({
+  updateCurrency,
+  isDarkMode,
+  updateIsDarkMode,
+}) => {
   return (
     <StyledNavbar>
       <Wrapper className="navbarWrapper">
         <Logo />
         <Currency updateCurrency={updateCurrency} />
-        <Theme />
+        <Theme isDarkMode={isDarkMode} updateIsDarkMode={updateIsDarkMode} />
         <Icons />
       </Wrapper>
     </StyledNavbar>

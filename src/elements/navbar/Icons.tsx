@@ -10,7 +10,7 @@ const StyledIcons = styled.div`
   a {
     font-size: 22px;
     transition: color 0.3s;
-    color: white;
+    color: ${(props) => props.theme.colors.typography};
     &:first-child {
       margin-right: 8px;
     }

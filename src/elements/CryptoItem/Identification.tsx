@@ -9,6 +9,9 @@ interface Props {
 const StyledIdentification = styled.div`
   display: flex;
   align-items: center;
+  flex-basis: 100%;
+  margin-bottom: 20px;
+  text-align: center;
   img {
     width: 40px;
     height: 40px;
@@ -16,9 +19,11 @@ const StyledIdentification = styled.div`
   .cryptoName {
     color: ${(props) => props.theme.colors.main};
     font-weight: 600;
+    margin: 0 auto;
+    padding: 0 10px;
   }
   .cryptoId {
-    color: rgba(152, 152, 152, 0.7);
+    color: ${(props) => props.theme.colors.typography_light};
   }
 `;
 

@@ -17,18 +17,32 @@ interface Props {
 }
 
 const StyledCryptoItem = styled.div`
+  flex-basis: 100%;
   display: flex;
   align-items: center;
-  background-color: ${(props) => props.theme.colors.gray};
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  background-color: ${(props) => props.theme.colors.bgc};
+  margin-bottom: 20px;
   padding: 20px;
-  color: white;
+  color: ${(props) => props.theme.colors.typography};
   border-radius: 18px;
   border: 2px solid transparent;
   cursor: pointer;
   transition: border-color 0.3s;
   &:hover {
     border-color: ${(props) => props.theme.colors.main};
+  }
+  @media (min-width: 500px) {
+    flex-basis: 49%;
+    width: 49%;
+  }
+  @media (min-width: 768px) {
+    flex-basis: 32%;
+    width: 32%;
+  }
+  @media (min-width: 1260px) {
+    flex-basis: 24%;
+    width: 24%;
   }
 `;
 

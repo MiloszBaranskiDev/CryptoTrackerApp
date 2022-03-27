@@ -6,7 +6,7 @@ const StyledLogo = styled.a`
   display: flex;
   align-items: center;
   font-size: 18px;
-  color: white;
+  color: ${(props) => props.theme.colors.typography};
   margin-right: auto;
   padding-right: 10px;
   @media (min-width: 500px) {
