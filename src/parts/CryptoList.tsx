@@ -34,7 +34,7 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
     <StyledCryptoList>
       <Wrapper className="cryptoListWrapper">
         {cryptoList?.map((crypto: { [key: string]: any }) => (
-          <CryptoItem crypto={crypto} currency={currency} key={crypto.symbol} />
+          <CryptoItem crypto={crypto} currency={currency} key={crypto.id} />
         ))}
       </Wrapper>
     </StyledCryptoList>

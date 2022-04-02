@@ -33,7 +33,10 @@ const App: React.FC = () => {
           />
           <Routes>
             <Route path="/" element={<CryptoList currency={currency} />} />
-            <Route path="/crypto/:id" element={<SingleCrypto />} />
+            <Route
+              path="/crypto/:id"
+              element={<SingleCrypto currency={currency} />}
+            />
           </Routes>
         </ThemeProvider>
       </div>

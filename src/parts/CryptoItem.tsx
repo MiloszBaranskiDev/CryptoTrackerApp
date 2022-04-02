@@ -8,6 +8,7 @@ interface Props {
   crypto: {
     price?: number;
     symbol?: string;
+    id?: string;
     name?: string;
     icon?: string;
     priceChange1h?: number;
@@ -64,7 +65,7 @@ const CryptoItem: React.FC<Props> = ({ crypto, currency }) => {
 
   return (
     <StyledCryptoItem>
-      <Link to={`/crypto/${crypto.symbol}`}>
+      <Link to={`/crypto/${crypto.id}`}>
         <Identyfication
           symbol={crypto.symbol}
           name={crypto.name}
