@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Wrapper from "elements/layout/Wrapper";
 import GetSingleCryptoDetails from "utils/GetSingleCryptoDetails";
+import Info from "parts/SingleCrypto/Info";
 
 interface Props {
   currency: string;
@@ -9,7 +10,7 @@ interface Props {
 
 const SingleCrypto: React.FC<Props> = ({ currency }) => {
   const { id } = useParams();
-  const [cryptoDetails, setCryptoDetails] = useState<object>();
+  const [cryptoDetails, setCryptoDetails] = useState<object>({});
 
   useEffect(() => {
     const loadCryptoDetails = async () => {
@@ -22,7 +23,7 @@ const SingleCrypto: React.FC<Props> = ({ currency }) => {
 
   return (
     <Wrapper>
-      <p>SingleCrypto</p>
+      <Info cryptoDetails={cryptoDetails} />
     </Wrapper>
   );
 };
