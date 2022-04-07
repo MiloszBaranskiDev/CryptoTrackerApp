@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Price from "elements/CryptoItem/Price";
 import Identyfication from "elements/CryptoItem/Identification";
 import Changes from "elements/CryptoItem/Changes";
+import GetCurrencySymbol from "utils/GetCurrencySymbol";
 
 interface Props {
   crypto: {
@@ -54,15 +55,6 @@ const StyledCryptoItem = styled.div`
 `;
 
 const CryptoItem: React.FC<Props> = ({ crypto, currency }) => {
-  let currencySymbol: string;
-  if (currency === "USD") {
-    currencySymbol = "$";
-  } else if (currency === "EUR") {
-    currencySymbol = "€";
-  } else {
-    currencySymbol = "zł";
-  }
-
   return (
     <StyledCryptoItem>
       <Link to={`/crypto/${crypto.id}`}>
@@ -71,7 +63,10 @@ const CryptoItem: React.FC<Props> = ({ crypto, currency }) => {
           name={crypto.name}
           icon={crypto.icon}
         />
-        <Price price={crypto.price} currencySymbol={currencySymbol} />
+        <Price
+          price={crypto.price}
+          currencySymbol={GetCurrencySymbol(currency)}
+        />
         <Changes
           changeHour={crypto.priceChange1h}
           changeDay={crypto.priceChange1d}

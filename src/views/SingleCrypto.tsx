@@ -23,7 +23,8 @@ const SingleCrypto: React.FC<Props> = ({ currency }) => {
 
   return (
     <Wrapper>
-      <Info cryptoDetails={cryptoDetails} />
+      <Info cryptoDetails={cryptoDetails} currency={currency} />
+      24h, 1w, 1m, 3m, 6m, 1y, all
     </Wrapper>
   );
 };
