@@ -25,6 +25,9 @@ const StyledColumn = styled.div`
     font-weight: 400;
     color: ${(props) => props.theme.colors.typography_light};
   }
+  img {
+    height: 60px;
+  }
 `;
 
 const Identification: React.FC<Props> = ({ symbol, name, icon }) => {
