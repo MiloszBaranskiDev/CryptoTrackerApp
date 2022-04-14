@@ -3,24 +3,35 @@ import GetSingleCryptoHistory from "utils/GetSingleCryptoHistory";
 
 interface Props {
   name?: string;
+  period: string;
 }
 
-const Chart: React.FC<Props> = ({ name }) => {
-  const [period, updatePeriod] = useState<string>("24h");
-  const [history, updateHistory] = useState<object>({});
+const Chart: React.FC<Props> = ({ name, period }) => {
+  const [history, updateHistory] = useState<number[]>();
 
   useEffect(() => {
-    const loadCryptoHistory = async () => {
-      updateHistory(await GetSingleCryptoHistory(name!, period));
-    };
-    loadCryptoHistory();
-  }, [period]);
+    if (name !== undefined) {
+      const loadCryptoHistory = async () => {
+        updateHistory(
+          await GetSingleCryptoHistory(
+            name.toLowerCase().split(" ").join("-"),
+            period
+          )
+        );
+      };
+      loadCryptoHistory();
+    }
+  }, [name, period]);
 
-  console.log(history);
+  // if (history) {
+  //   history.forEach((item: any) => {
+  //     console.log(item[1].toFixed(2));
+  //   });
+  // }
 
   return (
     <div>
-      <p> 24h, 1w, 1m, 3m, 6m, 1y, all</p>
+      <p></p>
     </div>
   );
 };

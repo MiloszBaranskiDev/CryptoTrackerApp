@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import Wrapper from "elements/layout/Wrapper";
 import Logo from "elements/Navbar/Logo";
-import Currency from "elements/Navbar/Currency";
+import CurrencySwitcher from "elements/Navbar/CurrencySwitcher";
 import Icons from "elements/Navbar/Icons";
-import Theme from "elements/Navbar/Theme";
+import ThemeSwitcher from "elements/Navbar/ThemeSwitcher";
 
 interface Props {
   updateCurrency: (arg0: string) => void;
-  isDarkMode: boolean;
   updateIsDarkMode: (arg0: boolean) => void;
+  isDarkMode: boolean;
 }
 
 const StyledNavbar = styled.div`
@@ -24,15 +24,18 @@ const StyledNavbar = styled.div`
 
 const Navbar: React.FC<Props> = ({
   updateCurrency,
-  isDarkMode,
   updateIsDarkMode,
+  isDarkMode,
 }) => {
   return (
     <StyledNavbar>
       <Wrapper className="navbarWrapper">
         <Logo />
-        <Currency updateCurrency={updateCurrency} />
-        <Theme isDarkMode={isDarkMode} updateIsDarkMode={updateIsDarkMode} />
+        <CurrencySwitcher updateCurrency={updateCurrency} />
+        <ThemeSwitcher
+          isDarkMode={isDarkMode}
+          updateIsDarkMode={updateIsDarkMode}
+        />
         <Icons />
       </Wrapper>
     </StyledNavbar>

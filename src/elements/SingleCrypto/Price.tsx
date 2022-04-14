@@ -7,7 +7,7 @@ interface Props {
 }
 
 const StyledPrice = styled.p`
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 600;
   color: ${(props) => props.theme.colors.typography};
   margin-top: 20px;

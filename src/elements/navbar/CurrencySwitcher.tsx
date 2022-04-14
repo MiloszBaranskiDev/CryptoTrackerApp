@@ -25,7 +25,7 @@ const Select = styled.select`
   }
 `;
 
-const Currency: React.FC<Props> = ({ updateCurrency }) => {
+const CurrencySwitcher: React.FC<Props> = ({ updateCurrency }) => {
   const currencies = ["USD", "EUR", "PLN"];
 
   return (
@@ -39,4 +39,4 @@ const Currency: React.FC<Props> = ({ updateCurrency }) => {
   );
 };
 
-export default Currency;
+export default CurrencySwitcher;

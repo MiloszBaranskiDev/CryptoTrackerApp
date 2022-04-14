@@ -36,7 +36,7 @@ const StyledButton = styled.button<StyledProps>`
   }
 `;
 
-const Theme: React.FC<Props> = ({ isDarkMode, updateIsDarkMode }) => {
+const ThemeSwitcher: React.FC<Props> = ({ isDarkMode, updateIsDarkMode }) => {
   return (
     <StyledButton
       isDarkMode={isDarkMode}
@@ -47,4 +47,4 @@ const Theme: React.FC<Props> = ({ isDarkMode, updateIsDarkMode }) => {
   );
 };
 
-export default Theme;
+export default ThemeSwitcher;
