@@ -16,7 +16,9 @@ interface Props {
   period: string;
 }
 
-const StyledChart = styled.div``;
+const StyledChart = styled.div`
+  padding: 25px 0 80px 0;
+`;
 
 ChartJS.register(
   CategoryScale,
@@ -49,6 +51,16 @@ const Chart: React.FC<Props> = ({ id, period }) => {
 
   const options = {
     responsive: true,
+    scales: {
+      x: {
+        display: false,
+      },
+    },
+    elements: {
+      point: {
+        radius: 1.5,
+      },
+    },
   };
 
   const data = {
