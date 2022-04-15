@@ -8,10 +8,10 @@ const div = ({
   children: any;
 }) => <div className={className}>{children}</div>;
 
-const Wrapper = styled(div)`
+const StyledWrapper = styled(div)`
   width: 90%;
   max-width: 1260px;
   margin: 0 auto;
 `;
 
-export default Wrapper;
+export default StyledWrapper;

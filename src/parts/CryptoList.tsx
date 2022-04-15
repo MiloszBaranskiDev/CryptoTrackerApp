@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import GetCryptoList from "utils/GetCryptoList";
 import CryptoItem from "parts/CryptoItem";
-import Wrapper from "elements/layout/Wrapper";
+import StyledWrapper from "elements/layout/StyledWrapper";
 import styled from "styled-components";
 
 interface Props {
@@ -32,11 +32,11 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
 
   return (
     <StyledCryptoList>
-      <Wrapper className="cryptoListWrapper">
+      <StyledWrapper className="cryptoListWrapper">
         {cryptoList?.map((crypto: { [key: string]: any }) => (
           <CryptoItem crypto={crypto} currency={currency} key={crypto.id} />
         ))}
-      </Wrapper>
+      </StyledWrapper>
     </StyledCryptoList>
   );
 };

@@ -1,38 +1,72 @@
 import { useState, useEffect } from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import GetSingleCryptoHistory from "utils/GetSingleCryptoHistory";
+import styled, { useTheme } from "styled-components";
 
 interface Props {
-  name?: string;
+  id: string;
   period: string;
 }
 
-const Chart: React.FC<Props> = ({ name, period }) => {
+const StyledChart = styled.div``;
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip
+);
+
+const Chart: React.FC<Props> = ({ id, period }) => {
   const [history, updateHistory] = useState<number[]>();
+  const theme: any = useTheme();
+
+  const historicalPrices: number[] = [];
 
   useEffect(() => {
-    if (name !== undefined) {
+    if (id !== undefined) {
       const loadCryptoHistory = async () => {
-        updateHistory(
-          await GetSingleCryptoHistory(
-            name.toLowerCase().split(" ").join("-"),
-            period
-          )
-        );
+        updateHistory(await GetSingleCryptoHistory(id, period));
       };
       loadCryptoHistory();
     }
-  }, [name, period]);
+  }, [id, period]);
 
-  // if (history) {
-  //   history.forEach((item: any) => {
-  //     console.log(item[1].toFixed(2));
-  //   });
-  // }
+  if (history) {
+    history.forEach((item: any) => {
+      historicalPrices.push(item[1].toFixed(2));
+    });
+  }
+
+  const options = {
+    responsive: true,
+  };
+
+  const data = {
+    labels: historicalPrices,
+    datasets: [
+      {
+        borderWidth: 1,
+        borderColor: theme.colors.main,
+        backgroundColor: theme.colors.main,
+        data: historicalPrices,
+      },
+    ],
+  };
 
   return (
-    <div>
-      <p></p>
-    </div>
+    <StyledChart>
+      <Line options={options} data={data} />
+    </StyledChart>
   );
 };
 

@@ -4,7 +4,7 @@ interface Props {
   updateCurrency: (arg0: string) => void;
 }
 
-const Select = styled.select`
+const StyledSelect = styled.select`
   cursor: pointer;
   outline: none;
   border-color: transparent !important;
@@ -29,13 +29,13 @@ const CurrencySwitcher: React.FC<Props> = ({ updateCurrency }) => {
   const currencies = ["USD", "EUR", "PLN"];
 
   return (
-    <Select onChange={(e) => updateCurrency(e.target.value)}>
+    <StyledSelect onChange={(e) => updateCurrency(e.target.value)}>
       {currencies.map((currency) => (
         <option key={currency} value={currency}>
           {currency}
         </option>
       ))}
-    </Select>
+    </StyledSelect>
   );
 };
 

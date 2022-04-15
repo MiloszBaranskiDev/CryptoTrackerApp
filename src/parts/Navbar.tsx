@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Wrapper from "elements/layout/Wrapper";
+import StyledWrapper from "elements/layout/StyledWrapper";
 import Logo from "elements/Navbar/Logo";
 import CurrencySwitcher from "elements/Navbar/CurrencySwitcher";
 import Icons from "elements/Navbar/Icons";
@@ -29,7 +29,7 @@ const Navbar: React.FC<Props> = ({
 }) => {
   return (
     <StyledNavbar>
-      <Wrapper className="navbarWrapper">
+      <StyledWrapper className="navbarWrapper">
         <Logo />
         <CurrencySwitcher updateCurrency={updateCurrency} />
         <ThemeSwitcher
@@ -37,7 +37,7 @@ const Navbar: React.FC<Props> = ({
           updateIsDarkMode={updateIsDarkMode}
         />
         <Icons />
-      </Wrapper>
+      </StyledWrapper>
     </StyledNavbar>
   );
 };
