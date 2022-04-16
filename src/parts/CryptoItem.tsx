@@ -23,7 +23,6 @@ const StyledCryptoItem = styled.div`
   flex-basis: 100%;
   background-color: ${(props) => props.theme.colors.bgc};
   margin-bottom: 20px;
-  padding: 20px;
   color: ${(props) => props.theme.colors.typography};
   border-radius: 18px;
   border: 2px solid transparent;
@@ -39,18 +38,16 @@ const StyledCryptoItem = styled.div`
     flex-wrap: wrap;
     text-decoration: none;
     color: unset;
+    padding: 20px;
   }
   @media (min-width: 500px) {
     flex-basis: 49%;
-    width: 49%;
   }
   @media (min-width: 768px) {
     flex-basis: 32%;
-    width: 32%;
   }
   @media (min-width: 1260px) {
     flex-basis: 24%;
-    width: 24%;
   }
 `;
 

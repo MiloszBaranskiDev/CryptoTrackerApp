@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 interface Props {
+  currentPeriod: string;
   updatePeriod: (arg0: string) => void;
 }
 
@@ -18,6 +19,10 @@ const StyledPeriod = styled.li`
   padding: 8px;
   font-size: 18px;
   transition: color 0.3s;
+  &.activePeriod {
+    color: ${(props) => props.theme.colors.main};
+    cursor: default;
+  }
   &:hover {
     color: ${(props) => props.theme.colors.main};
   }
@@ -26,12 +31,20 @@ const StyledPeriod = styled.li`
   }
 `;
 
-const PeriodSwitcher: React.FC<Props> = ({ updatePeriod }) => {
+const PeriodSwitcher: React.FC<Props> = ({ currentPeriod, updatePeriod }) => {
   const periods: string[] = ["24h", "1w", "1m", "3m", "6m", "1y", "all"];
+  const currentPeriodIndex: number = periods.findIndex(
+    (period: string) => period === currentPeriod
+  );
+
   return (
     <StyledPeriodSwitcher>
-      {periods.map((period: string) => (
-        <StyledPeriod onClick={() => updatePeriod(period)} key={period}>
+      {periods.map((period: string, i: number) => (
+        <StyledPeriod
+          onClick={() => updatePeriod(period)}
+          className={i === currentPeriodIndex ? "activePeriod" : ""}
+          key={period}
+        >
           {period}
         </StyledPeriod>
       ))}

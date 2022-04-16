@@ -31,7 +31,6 @@ ChartJS.register(
 const Chart: React.FC<Props> = ({ id, period }) => {
   const [history, updateHistory] = useState<number[]>();
   const theme: any = useTheme();
-
   const historicalPrices: number[] = [];
 
   useEffect(() => {

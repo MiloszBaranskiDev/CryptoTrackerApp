@@ -25,7 +25,7 @@ const SingleCrypto: React.FC<Props> = ({ currency }) => {
   return (
     <StyledWrapper>
       <Info cryptoDetails={cryptoDetails} currency={currency} />
-      <PeriodSwitcher updatePeriod={updatePeriod} />
+      <PeriodSwitcher currentPeriod={period} updatePeriod={updatePeriod} />
       <Chart id={id} period={period} />
     </StyledWrapper>
   );
