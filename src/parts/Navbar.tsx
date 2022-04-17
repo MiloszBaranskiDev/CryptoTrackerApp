@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledWrapper from "elements/layout/StyledWrapper";
+import StyledWrapper from "elements/StyledWrapper";
 import Logo from "elements/Navbar/Logo";
 import CurrencySwitcher from "elements/Navbar/CurrencySwitcher";
 import Icons from "elements/Navbar/Icons";
