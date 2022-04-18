@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Params, useParams } from "react-router-dom";
-import StyledWrapper from "elements/StyledWrapper";
+import StyledWrapper from "elements/layout/StyledWrapper";
 import GetSingleCryptoDetails from "utils/GetSingleCryptoDetails";
 import Info from "parts/SingleCrypto/Info";
 import PeriodSwitcher from "parts/SingleCrypto/PeriodSwitcher";

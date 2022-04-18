@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import GetCryptoList from "utils/GetCryptoList";
-import CryptoItem from "parts/CryptoItem";
-import StyledWrapper from "elements/StyledWrapper";
+import CryptoItem from "parts/CryptoList/CryptoItem";
+import StyledWrapper from "elements/layout/StyledWrapper";
+import SortCryptoList from "parts/CryptoList/SortCryptoList";
 import Loader from "elements/Loader";
 import styled from "styled-components";
 
@@ -39,6 +40,7 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
       <StyledWrapper className="cryptoListWrapper">
         {!loading ? (
           <>
+            <SortCryptoList />
             {cryptoList?.map((crypto: { [key: string]: any }) => (
               <CryptoItem crypto={crypto} currency={currency} key={crypto.id} />
             ))}

@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Navbar from "parts/Navbar";
-import CryptoList from "parts/CryptoList";
+import CryptoList from "views/CryptoList";
 import SingleCrypto from "views/SingleCrypto";
 
 const App: React.FC = () => {

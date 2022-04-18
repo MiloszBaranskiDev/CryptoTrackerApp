@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import StyledWrapper from "elements/StyledWrapper";
+import StyledWrapper from "elements/layout/StyledWrapper";
 import Logo from "elements/Navbar/Logo";
 import CurrencySwitcher from "elements/Navbar/CurrencySwitcher";
 import Icons from "elements/Navbar/Icons";
@@ -12,6 +12,8 @@ interface Props {
 }
 
 const StyledNavbar = styled.div`
+  position: sticky;
+  top: 0;
   background-color: ${(props) => props.theme.colors.bgc};
   border-bottom: 2px solid;
   border-color: ${(props) => props.theme.colors.main};
