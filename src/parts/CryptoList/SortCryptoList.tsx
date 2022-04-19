@@ -1,5 +1,11 @@
 import StyledSelect from "elements/layout/StyledSelect";
 import styled from "styled-components";
+import GetSortedCryptoList from "utils/GetSortedCryptoList";
+
+interface Props {
+  cryptoList?: object[];
+  setSortedCryptoList: (arg0: object[]) => void;
+}
 
 const StyledSort = styled.div`
   flex-basis: 100%;
@@ -16,8 +22,12 @@ const StyledSort = styled.div`
   }
 `;
 
-const SortCryptoList: React.FC = () => {
+const SortCryptoList: React.FC<Props> = ({
+  cryptoList,
+  setSortedCryptoList,
+}) => {
   const sortOptions: string[] = [
+    "Default",
     "Price descending",
     "Price ascending",
     "1h change descending",
@@ -33,7 +43,11 @@ const SortCryptoList: React.FC = () => {
   return (
     <StyledSort>
       <p>Sort by:</p>
-      <StyledSelect>
+      <StyledSelect
+        onChange={(e) =>
+          setSortedCryptoList(GetSortedCryptoList(cryptoList!, e.target.value))
+        }
+      >
         {sortOptions.map((option) => (
           <option key={option} value={option}>
             {option}

@@ -24,7 +24,9 @@ const StyledCryptoList = styled.div`
 
 const CryptoList: React.FC<Props> = ({ currency }) => {
   const [cryptoList, setCryptoList] = useState<object[]>();
+  const [sortedCryptoList, setSortedCryptoList] = useState<object[]>();
   const [loading, setLoading] = useState<boolean>(true);
+  let listToMap: object[];
 
   useEffect(() => {
     setLoading(true);
@@ -35,13 +37,20 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
     loadCrypto();
   }, [currency]);
 
+  sortedCryptoList === undefined
+    ? (listToMap = cryptoList!)
+    : (listToMap = sortedCryptoList);
+
   return (
     <StyledCryptoList>
       <StyledWrapper className="cryptoListWrapper">
         {!loading ? (
           <>
-            <SortCryptoList />
-            {cryptoList?.map((crypto: { [key: string]: any }) => (
+            <SortCryptoList
+              cryptoList={Object.assign([{}], cryptoList!)}
+              setSortedCryptoList={setSortedCryptoList}
+            />
+            {listToMap?.map((crypto: { [key: string]: any }) => (
               <CryptoItem crypto={crypto} currency={currency} key={crypto.id} />
             ))}
           </>
