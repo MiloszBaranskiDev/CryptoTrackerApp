@@ -10,6 +10,7 @@ import {
 import { Line } from "react-chartjs-2";
 import GetSingleCryptoHistory from "utils/GetSingleCryptoHistory";
 import GetSingleCryptoDetails from "utils/GetSingleCryptoDetails";
+import GetPriceFraction from "utils/GetPriceFraction";
 import styled, { useTheme } from "styled-components";
 
 interface Props {
@@ -70,13 +71,13 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
     if (history) {
       historicalPrices.length = 0;
       history.forEach((item: any) => {
-        const historicalPrice: number = item[1].toFixed(2);
+        const historicalPrice: number = Number(GetPriceFraction(item[1]));
         if (currency === "USD") {
           historicalPrices.push(historicalPrice);
         } else {
           const fixedHistoricalPrice: any =
             historicalPrice * usdInCurrentCurrency!;
-          historicalPrices.push(fixedHistoricalPrice.toFixed(2));
+          historicalPrices.push(Number(GetPriceFraction(fixedHistoricalPrice)));
         }
       });
 

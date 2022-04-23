@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import GetCurrencySymbol from "utils/GetCurrencySymbol";
+import GetPriceFraction from "utils/GetPriceFraction";
 
 interface Props {
   price?: number;
@@ -17,7 +18,7 @@ const StyledPrice = styled.p`
 const Price: React.FC<Props> = ({ price, currency }) => {
   return (
     <StyledPrice>
-      {price?.toFixed(2)}
+      {GetPriceFraction(price!)}
       {GetCurrencySymbol(currency)}
     </StyledPrice>
   );
