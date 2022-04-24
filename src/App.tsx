@@ -10,7 +10,7 @@ const App: React.FC = () => {
   const [currency, updateCurrency] = useState<string>("USD");
   const [isDarkMode, updateIsDarkMode] = useState<boolean>(true);
 
-  const theme = {
+  const theme: any = {
     colors: {
       main: "#7d5fff",
       bgc: isDarkMode ? "#292929" : "#ecf0f1",

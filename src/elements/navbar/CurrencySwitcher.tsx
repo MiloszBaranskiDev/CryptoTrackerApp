@@ -5,7 +5,7 @@ interface Props {
 }
 
 const CurrencySwitcher: React.FC<Props> = ({ updateCurrency }) => {
-  const currencies = ["USD", "EUR", "PLN"];
+  const currencies: string[] = ["USD", "EUR", "PLN"];
 
   return (
     <StyledSelect onChange={(e) => updateCurrency(e.target.value)}>

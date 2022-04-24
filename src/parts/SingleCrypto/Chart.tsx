@@ -19,6 +19,18 @@ interface Props {
   period: string;
 }
 
+interface ChartData {
+  labels: number[];
+  datasets: [
+    {
+      borderWidth: number;
+      borderColor: any;
+      backgroundColor: any;
+      data: number[];
+    }
+  ];
+}
+
 const StyledChart = styled.div`
   padding: 25px 0 80px 0;
 `;
@@ -34,11 +46,11 @@ ChartJS.register(
 const Chart: React.FC<Props> = ({ currency, id, period }) => {
   const [history, setHistory] = useState<number[]>();
   const [usdInCurrentCurrency, setUsdToCurrentCurrency] = useState<number>();
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<ChartData>(null as any);
   const theme: any = useTheme();
   const historicalPrices: number[] = [];
 
-  const options = {
+  const options: object = {
     responsive: true,
     scales: {
       x: {
@@ -60,7 +72,7 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
 
   useEffect(() => {
     if (id !== undefined) {
-      const loadCryptoHistory = async () => {
+      const loadCryptoHistory: VoidFunction = async () => {
         setHistory(await GetSingleCryptoHistory(id, period));
       };
       loadCryptoHistory();
@@ -75,7 +87,7 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
         if (currency === "USD") {
           historicalPrices.push(historicalPrice);
         } else {
-          const fixedHistoricalPrice: any =
+          const fixedHistoricalPrice: number =
             historicalPrice * usdInCurrentCurrency!;
           historicalPrices.push(Number(GetPriceFraction(fixedHistoricalPrice)));
         }
@@ -93,6 +105,7 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
         ],
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history, usdInCurrentCurrency]);
 
   return (

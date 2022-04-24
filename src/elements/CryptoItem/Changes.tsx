@@ -37,16 +37,16 @@ const StyledChanges = styled.div`
 
 const Changes: React.FC<Props> = ({ changeHour, changeDay, changeWeek }) => {
   const checkChange = (change?: number) => {
-    let className;
-    const firstLetter = String(change!).charAt(0);
+    let className: string;
+    const firstDigit: string = String(change!).charAt(0);
 
-    if (firstLetter === "-") {
+    if (firstDigit === "-") {
       className = "changeMinus";
-    } else if (firstLetter !== "-" && change! > 0) {
+    } else if (firstDigit !== "-" && change! > 0) {
       className = "changePlus";
     }
 
-    return className;
+    return className!;
   };
 
   return (
