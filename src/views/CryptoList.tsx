@@ -8,10 +8,12 @@ import styled from "styled-components";
 
 interface Props {
   currency: string;
+  currentSortBy: string;
+  setCurrentSortBy: (arg0: string) => void;
 }
 
 const StyledCryptoList = styled.div`
-  padding: 80px 0;
+  padding: 80px 0 160px 0;
   .cryptoListWrapper {
     display: flex;
     flex-direction: row;
@@ -22,24 +24,30 @@ const StyledCryptoList = styled.div`
   }
 `;
 
-const CryptoList: React.FC<Props> = ({ currency }) => {
+const CryptoList: React.FC<Props> = ({
+  currency,
+  currentSortBy,
+  setCurrentSortBy,
+}) => {
   const [cryptoList, setCryptoList] = useState<object[]>();
   const [sortedCryptoList, setSortedCryptoList] = useState<object[]>();
   const [loading, setLoading] = useState<boolean>(true);
-  let listToMap: object[];
+  const [listToMap, setListToMap] = useState<object[]>();
 
   useEffect(() => {
     setLoading(true);
-    const loadCrypto = async () => {
+    const loadCrypto: VoidFunction = async () => {
       setCryptoList(await GetCryptoList(currency));
       setLoading(false);
     };
     loadCrypto();
   }, [currency]);
 
-  sortedCryptoList === undefined
-    ? (listToMap = cryptoList!)
-    : (listToMap = sortedCryptoList);
+  useEffect(() => {
+    sortedCryptoList === undefined
+      ? setListToMap(cryptoList!)
+      : setListToMap(sortedCryptoList);
+  }, [cryptoList, sortedCryptoList]);
 
   return (
     <StyledCryptoList>
@@ -47,7 +55,10 @@ const CryptoList: React.FC<Props> = ({ currency }) => {
         {!loading ? (
           <>
             <SortCryptoList
+              currency={currency}
               cryptoList={Object.assign([{}], cryptoList!)}
+              currentSortBy={currentSortBy}
+              setCurrentSortBy={setCurrentSortBy}
               setSortedCryptoList={setSortedCryptoList}
             />
             {listToMap?.map((crypto: { [key: string]: any }) => (

@@ -3,11 +3,13 @@ import { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.scss";
 import Navbar from "parts/Navbar";
+import Footer from "elements/Footer";
 import CryptoList from "views/CryptoList";
 import SingleCrypto from "views/SingleCrypto";
 
 const App: React.FC = () => {
   const [currency, updateCurrency] = useState<string>("USD");
+  const [currentSortBy, setCurrentSortBy] = useState<string>("Default");
   const [isDarkMode, updateIsDarkMode] = useState<boolean>(true);
 
   const theme: any = {
@@ -24,7 +26,14 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="App" style={{ backgroundColor: theme.colors.bgc_light }}>
+      <div
+        className="App"
+        style={{
+          backgroundColor: theme.colors.bgc_light,
+          minHeight: "100vh",
+          position: "relative",
+        }}
+      >
         <ThemeProvider theme={theme}>
           <Navbar
             updateCurrency={updateCurrency}
@@ -32,12 +41,22 @@ const App: React.FC = () => {
             updateIsDarkMode={updateIsDarkMode}
           />
           <Routes>
-            <Route path="/" element={<CryptoList currency={currency} />} />
+            <Route
+              path="/"
+              element={
+                <CryptoList
+                  currency={currency}
+                  currentSortBy={currentSortBy}
+                  setCurrentSortBy={setCurrentSortBy}
+                />
+              }
+            />
             <Route
               path="/crypto/:id"
               element={<SingleCrypto currency={currency} />}
             />
           </Routes>
+          <Footer />
         </ThemeProvider>
       </div>
     </BrowserRouter>

@@ -41,12 +41,15 @@ const StyledCryptoItem = styled.div`
     padding: 20px;
   }
   @media (min-width: 500px) {
+    width: 49%;
     flex-basis: 49%;
   }
   @media (min-width: 768px) {
+    width: 32%;
     flex-basis: 32%;
   }
   @media (min-width: 1260px) {
+    width: 24%;
     flex-basis: 24%;
   }
 `;

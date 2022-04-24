@@ -1,9 +1,13 @@
 import StyledSelect from "elements/layout/StyledSelect";
+import { useEffect } from "react";
 import styled from "styled-components";
 import GetSortedCryptoList from "utils/GetSortedCryptoList";
 
 interface Props {
   cryptoList?: object[];
+  currency: string;
+  currentSortBy: string;
+  setCurrentSortBy: (arg0: string) => void;
   setSortedCryptoList: (arg0: object[]) => void;
 }
 
@@ -24,7 +28,10 @@ const StyledSort = styled.div`
 
 const SortCryptoList: React.FC<Props> = ({
   cryptoList,
+  currency,
+  currentSortBy,
   setSortedCryptoList,
+  setCurrentSortBy,
 }) => {
   const sortOptions: string[] = [
     "Default",
@@ -40,13 +47,21 @@ const SortCryptoList: React.FC<Props> = ({
     "Alphabetically ascending",
   ];
 
+  const sortHandler: (arg0: string) => void = (sortBy: string) => {
+    setCurrentSortBy(sortBy);
+    setSortedCryptoList(GetSortedCryptoList(cryptoList!, sortBy));
+  };
+
+  useEffect(() => {
+    sortHandler(currentSortBy);
+  }, [currency]);
+
   return (
     <StyledSort>
       <p>Sort by:</p>
       <StyledSelect
-        onChange={(e) =>
-          setSortedCryptoList(GetSortedCryptoList(cryptoList!, e.target.value))
-        }
+        defaultValue={currentSortBy}
+        onChange={(e) => sortHandler(e.target.value)}
       >
         {sortOptions.map((option) => (
           <option key={option} value={option}>

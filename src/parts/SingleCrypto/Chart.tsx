@@ -32,7 +32,7 @@ interface ChartData {
 }
 
 const StyledChart = styled.div`
-  padding: 25px 0 80px 0;
+  padding: 25px 0 160px 0;
 `;
 
 ChartJS.register(
@@ -70,13 +70,18 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
     }).then((r) => setUsdToCurrentCurrency(r.price));
   }, [currency]);
 
+  // to fix error about memory leak
+  const [didMount, setDidMount] = useState<boolean>(false);
+  //
   useEffect(() => {
+    setDidMount(true);
     if (id !== undefined) {
       const loadCryptoHistory: VoidFunction = async () => {
         setHistory(await GetSingleCryptoHistory(id, period));
       };
       loadCryptoHistory();
     }
+    return () => setDidMount(false);
   }, [id, period, currency]);
 
   useEffect(() => {
