@@ -28,7 +28,8 @@ An application that displays cryptocurrency prices, their percentage changes and
 3. `npm i`
 4. `npm start`
 
-![home_dark](https://user-images.githubusercontent.com/66494943/165186985-6ccd8466-0886-4617-b0ad-d15589e5d920.png)
-![single_dark](https://user-images.githubusercontent.com/66494943/165186998-18b1ffa6-04f2-43a9-89d3-06d93b2e66f6.png)
-![home_light](https://user-images.githubusercontent.com/66494943/165187001-d4e8e26d-21d0-4526-bf37-8c964c91b262.png)
-![single_light](https://user-images.githubusercontent.com/66494943/165187003-b84e58fe-63c8-4555-8b20-69ec4dff3b86.png)
+
+![home_dark](https://user-images.githubusercontent.com/66494943/165187187-f11165f4-808a-4067-adab-0d99ef8be5a9.png)
+![single_dark](https://user-images.githubusercontent.com/66494943/165187193-720a698b-77f7-4379-90a0-7264337b4238.png)
+![home_light](https://user-images.githubusercontent.com/66494943/165187200-b04d6b2b-5f1b-459c-ac0e-62115b7f6ca7.png)
+![single_light](https://user-images.githubusercontent.com/66494943/165187235-4d015b0a-0759-423e-a594-c23c1f1d1cff.png)
