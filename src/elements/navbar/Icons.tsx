@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 const StyledIcons = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
+  display: none;
   margin-left: 10px;
   @media (min-width: 500px) {
     margin-left: 40px;
+    display: flex;
+    flex-wrap: nowrap;
   }
   a {
     font-size: 22px;

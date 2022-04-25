@@ -22,7 +22,7 @@ const StyledSort = styled.div`
     margin-bottom: 4px;
   }
   select {
-    text-align: end;
+    direction: rtl;
   }
 `;
 

@@ -7,6 +7,7 @@ const StyledLoader = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 35px;
 `;
 
 const Loader: React.FC = () => {

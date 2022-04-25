@@ -13,7 +13,7 @@ interface Props {
 }
 
 const StyledCryptoList = styled.div`
-  padding: 80px 0 160px 0;
+  padding: 40px 0 160px 0;
   .cryptoListWrapper {
     display: flex;
     flex-direction: row;
@@ -21,6 +21,9 @@ const StyledCryptoList = styled.div`
     @media (min-width: 500px) {
       justify-content: space-between;
     }
+  }
+  @media (min-width: 768px) {
+    padding-top: 80px;
   }
 `;
 

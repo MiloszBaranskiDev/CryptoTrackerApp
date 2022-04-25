@@ -5,7 +5,7 @@ const StyledLogo = styled.h1`
   font-weight: 600;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: 14px;
   margin-right: auto;
   padding-right: 10px;
   a {
