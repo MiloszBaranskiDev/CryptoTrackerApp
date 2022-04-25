@@ -1,6 +1,6 @@
 # CryptoTrackerApp
 
-An application that displays cryptocurrency prices, their percentage changes and historical prices on a chart. Possibility to change the currency, theme and period of price history on the chart.
+An app that displays cryptocurrency prices, their percentage changes and historical prices on a chart. Possibility to change the currency, theme and period of price history on the chart.
 
 [Live demo](https://react-app-crypto-tracker.netlify.app)
 
