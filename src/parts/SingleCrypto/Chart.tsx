@@ -43,13 +43,6 @@ ChartJS.register(
   Tooltip
 );
 
-const Chart: React.FC<Props> = ({ currency, id, period }) => {
-  const [history, setHistory] = useState<number[]>();
-  const [usdInCurrentCurrency, setUsdToCurrentCurrency] = useState<number>();
-  const [data, setData] = useState<ChartData>(null as any);
-  const theme: any = useTheme();
-  const historicalPrices: number[] = [];
-
   const options: object = {
     responsive: true,
     scales: {
@@ -63,6 +56,13 @@ const Chart: React.FC<Props> = ({ currency, id, period }) => {
       },
     },
   };
+
+const Chart: React.FC<Props> = ({ currency, id, period }) => {
+  const [history, setHistory] = useState<number[]>();
+  const [usdInCurrentCurrency, setUsdToCurrentCurrency] = useState<number>();
+  const [data, setData] = useState<ChartData>(null as any);
+  const theme: any = useTheme();
+  const historicalPrices: number[] = [];
 
   useEffect(() => {
     new Promise<{ price: number }>((resolve) => {
