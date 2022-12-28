@@ -1,15 +1,58 @@
-import StyledSelect from "elements/layout/StyledSelect";
 import { useEffect } from "react";
 import styled from "styled-components";
+
+import StyledSelect from "elements/styled/StyledSelect";
+
+import { ICryptoItem } from "interfaces/ICryptoItem";
+import { ECurrencySymbol } from "enums/ECurrencySymbol";
+import { ESortOption } from "enums/ESortOption";
+
 import GetSortedCryptoList from "utils/GetSortedCryptoList";
 
-interface Props {
-  cryptoList?: object[];
-  currency: string;
-  currentSortBy: string;
-  setCurrentSortBy: (arg0: string) => void;
-  setSortedCryptoList: (arg0: object[]) => void;
+interface IProps {
+  cryptoList: ICryptoItem[];
+  currencySymbol: ECurrencySymbol;
+  currentSortBy: ESortOption;
+  setCurrentSortBy: (arg0: ESortOption) => void;
+  setSortedCryptoList: (arg0: ICryptoItem[]) => void;
 }
+
+const SortCryptoList: React.FC<IProps> = ({
+  cryptoList,
+  currencySymbol,
+  currentSortBy,
+  setSortedCryptoList,
+  setCurrentSortBy,
+}) => {
+  const sortHandler: (arg0: ESortOption) => void = (sortBy: ESortOption) => {
+    setCurrentSortBy(sortBy);
+    setSortedCryptoList(GetSortedCryptoList(cryptoList, sortBy));
+  };
+
+  useEffect(() => {
+    sortHandler(currentSortBy);
+  }, [currencySymbol]);
+
+  return (
+    <StyledSort>
+      <p>Sort by:</p>
+      <StyledSelect
+        defaultValue={currentSortBy}
+        onChange={(e) => sortHandler(e.target.value as ESortOption)}
+      >
+        {(Object.keys(ESortOption) as (keyof typeof ESortOption)[]).map(
+          (option) => (
+            <option key={ESortOption[option]} value={ESortOption[option]}>
+              {ESortOption[option]}
+            </option>
+          )
+        )}
+      </StyledSelect>
+    </StyledSort>
+  );
+};
+
+export default SortCryptoList;
 
 const StyledSort = styled.div`
   flex-basis: 100%;
@@ -25,52 +68,3 @@ const StyledSort = styled.div`
     direction: rtl;
   }
 `;
-
-const SortCryptoList: React.FC<Props> = ({
-  cryptoList,
-  currency,
-  currentSortBy,
-  setSortedCryptoList,
-  setCurrentSortBy,
-}) => {
-  const sortOptions: string[] = [
-    "Default",
-    "Price descending",
-    "Price ascending",
-    "1h change descending",
-    "1h change ascending",
-    "1d change descending",
-    "1d change ascending",
-    "7d change descending",
-    "7d change ascending",
-    "Alphabetically descending",
-    "Alphabetically ascending",
-  ];
-
-  const sortHandler: (arg0: string) => void = (sortBy: string) => {
-    setCurrentSortBy(sortBy);
-    setSortedCryptoList(GetSortedCryptoList(cryptoList!, sortBy));
-  };
-
-  useEffect(() => {
-    sortHandler(currentSortBy);
-  }, [currency]);
-
-  return (
-    <StyledSort>
-      <p>Sort by:</p>
-      <StyledSelect
-        defaultValue={currentSortBy}
-        onChange={(e) => sortHandler(e.target.value)}
-      >
-        {sortOptions.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </StyledSelect>
-    </StyledSort>
-  );
-};
-
-export default SortCryptoList;
