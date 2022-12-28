@@ -1,10 +1,23 @@
 import styled from "styled-components";
-import GetPriceFraction from "utils/GetPriceFraction";
 
-interface Props {
-  price?: number;
+import GetCurrencyPrice from "utils/GetCurrencyPrice";
+
+interface IProps {
+  price: number;
   currencySymbol: string;
 }
+
+const Price: React.FC<IProps> = ({ price, currencySymbol }) => {
+  return (
+    <StyledPrice>
+      <span>Price</span>
+      {GetCurrencyPrice(price)}
+      {currencySymbol}
+    </StyledPrice>
+  );
+};
+
+export default Price;
 
 const StyledPrice = styled.p`
   flex-basis: 100%;
@@ -20,15 +33,3 @@ const StyledPrice = styled.p`
     font-weight: 400;
   }
 `;
-
-const Price: React.FC<Props> = ({ price, currencySymbol }) => {
-  return (
-    <StyledPrice>
-      <span>Price</span>
-      {GetPriceFraction(price!)}
-      {currencySymbol}
-    </StyledPrice>
-  );
-};
-
-export default Price;
