@@ -1,11 +1,25 @@
 import styled from "styled-components";
-import GetCurrencySymbol from "utils/GetCurrencySymbol";
-import GetPriceFraction from "utils/GetPriceFraction";
 
-interface Props {
-  price?: number;
-  currency: string;
+import { ECurrencySymbol } from "enums/ECurrencySymbol";
+
+import GetCurrencySign from "utils/GetCurrencySign";
+import GetCurrencyPrice from "utils/GetCurrencyPrice";
+
+interface IProps {
+  price: number;
+  currencySymbol: ECurrencySymbol;
 }
+
+const Price: React.FC<IProps> = ({ price, currencySymbol }) => {
+  return (
+    <StyledPrice>
+      {GetCurrencyPrice(price)}
+      {GetCurrencySign(currencySymbol)}
+    </StyledPrice>
+  );
+};
+
+export default Price;
 
 const StyledPrice = styled.p`
   font-size: 34px;
@@ -14,14 +28,3 @@ const StyledPrice = styled.p`
   margin-top: 20px;
   flex-basis: 100%;
 `;
-
-const Price: React.FC<Props> = ({ price, currency }) => {
-  return (
-    <StyledPrice>
-      {GetPriceFraction(price!)}
-      {GetCurrencySymbol(currency)}
-    </StyledPrice>
-  );
-};
-
-export default Price;
