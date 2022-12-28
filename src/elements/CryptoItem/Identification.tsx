@@ -1,10 +1,22 @@
 import styled from "styled-components";
 
-interface Props {
-  symbol?: string;
-  name?: string;
-  icon?: string;
+interface IProps {
+  symbol: string;
+  name: string;
+  icon: string;
 }
+
+const Identification: React.FC<IProps> = ({ symbol, name, icon }) => {
+  return (
+    <StyledIdentification>
+      <img src={icon} alt={name} />
+      <p className="cryptoName">{name}</p>
+      <p className="cryptoId">{symbol}</p>
+    </StyledIdentification>
+  );
+};
+
+export default Identification;
 
 const StyledIdentification = styled.div`
   display: flex;
@@ -12,6 +24,12 @@ const StyledIdentification = styled.div`
   flex-basis: 100%;
   margin-bottom: 20px;
   text-align: center;
+  @media (min-width: 500px) and (max-width: 1259px) {
+    flex-direction: column;
+    *:not(:last-child) {
+      margin-bottom: 6px !important;
+    }
+  }
   img {
     width: 40px;
     height: 40px;
@@ -26,15 +44,3 @@ const StyledIdentification = styled.div`
     color: ${(props) => props.theme.colors.typography_light};
   }
 `;
-
-const Identification: React.FC<Props> = ({ symbol, name, icon }) => {
-  return (
-    <StyledIdentification>
-      <img src={icon} alt={name} />
-      <p className="cryptoName">{name}</p>
-      <p className="cryptoId">{symbol}</p>
-    </StyledIdentification>
-  );
-};
-
-export default Identification;
