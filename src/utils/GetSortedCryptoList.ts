@@ -1,63 +1,61 @@
-interface Obj {
-  price?: number;
-  priceChange1h?: number;
-  priceChange1d?: number;
-  priceChange1w?: number;
-  name?: string;
-}
+import { ESortOption } from "enums/ESortOption";
+import { ICryptoItem } from "interfaces/ICryptoItem";
 
-const GetSortedCryptoList = (cryptoList: object[], sortBy: string) => {
-  let sortedCryptoList: object[];
+const GetSortedCryptoList = (
+  cryptoList: ICryptoItem[],
+  sortBy: ESortOption
+) => {
+  let sortedCryptoList: ICryptoItem[];
 
   switch (sortBy) {
-    case "Price descending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.price! > b.price! ? 1 : -1
+    case ESortOption.priceDescending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.price > b.price ? 1 : -1
       );
       break;
-    case "Price ascending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.price! < b.price! ? 1 : -1
+    case ESortOption.priceAscending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.price < b.price ? 1 : -1
       );
       break;
-    case "1h change descending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1h! > b.priceChange1h! ? 1 : -1
+    case ESortOption.hourDescending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1h > b.priceChange1h ? 1 : -1
       );
       break;
-    case "1h change ascending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1h! < b.priceChange1h! ? 1 : -1
+    case ESortOption.hourAscending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1h < b.priceChange1h ? 1 : -1
       );
       break;
-    case "1d change descending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1d! > b.priceChange1d! ? 1 : -1
+    case ESortOption.dayDescending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1d > b.priceChange1d ? 1 : -1
       );
       break;
-    case "1d change ascending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1d! < b.priceChange1d! ? 1 : -1
+    case ESortOption.dayAscending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1d < b.priceChange1d ? 1 : -1
       );
       break;
-    case "7d change descending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1w! > b.priceChange1w! ? 1 : -1
+    case ESortOption.weekDescending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1w > b.priceChange1w ? 1 : -1
       );
       break;
-    case "7d change ascending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.priceChange1w! < b.priceChange1w! ? 1 : -1
+    case ESortOption.weekAscending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.priceChange1w < b.priceChange1w ? 1 : -1
       );
       break;
-    case "Alphabetically descending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.name!.toLowerCase()! > b.name!.toLowerCase()! ? 1 : -1
+    case ESortOption.alphabeticallyDescending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1
       );
       break;
-    case "Alphabetically ascending":
-      sortedCryptoList = cryptoList?.sort((a: Obj, b: Obj) =>
-        a.name!.toLowerCase()! < b.name!.toLowerCase()! ? 1 : -1
+    case ESortOption.alphabeticallyAscending:
+      sortedCryptoList = cryptoList?.sort((a, b) =>
+        a.name.toLowerCase() < b.name.toLowerCase() ? 1 : -1
       );
       break;
     default:
