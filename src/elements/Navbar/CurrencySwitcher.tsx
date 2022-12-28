@@ -1,19 +1,23 @@
-import StyledSelect from "elements/layout/StyledSelect";
+import StyledSelect from "elements/styled/StyledSelect";
 
-interface Props {
-  updateCurrency: (arg0: string) => void;
+import { ECurrencySymbol } from "enums/ECurrencySymbol";
+
+interface IProps {
+  updateCurrencySymbol: (arg0: ECurrencySymbol) => void;
 }
 
-const CurrencySwitcher: React.FC<Props> = ({ updateCurrency }) => {
-  const currencies: string[] = ["USD", "EUR", "PLN"];
-
+const CurrencySwitcher: React.FC<IProps> = ({ updateCurrencySymbol }) => {
   return (
-    <StyledSelect onChange={(e) => updateCurrency(e.target.value)}>
-      {currencies.map((currency) => (
-        <option key={currency} value={currency}>
-          {currency}
-        </option>
-      ))}
+    <StyledSelect
+      onChange={(e) => updateCurrencySymbol(e.target.value as ECurrencySymbol)}
+    >
+      {(Object.keys(ECurrencySymbol) as (keyof typeof ECurrencySymbol)[]).map(
+        (symbol) => (
+          <option key={ECurrencySymbol[symbol]} value={ECurrencySymbol[symbol]}>
+            {ECurrencySymbol[symbol]}
+          </option>
+        )
+      )}
     </StyledSelect>
   );
 };
