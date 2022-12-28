@@ -1,6 +1,19 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+const Logo: React.FC = () => {
+  return (
+    <StyledLogo>
+      <NavLink to="/">
+        <i className="fas fa-coins"></i>
+        CryptoTracker
+      </NavLink>
+    </StyledLogo>
+  );
+};
+
+export default Logo;
+
 const StyledLogo = styled.h1`
   font-weight: 600;
   display: flex;
@@ -21,16 +34,3 @@ const StyledLogo = styled.h1`
     color: ${(props) => props.theme.colors.main};
   }
 `;
-
-const Logo: React.FC = () => {
-  return (
-    <StyledLogo>
-      <NavLink to="/">
-        <i className="fas fa-coins"></i>
-        CryptoTracker
-      </NavLink>
-    </StyledLogo>
-  );
-};
-
-export default Logo;
