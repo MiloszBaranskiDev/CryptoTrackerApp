@@ -1,15 +1,28 @@
 import styled from "styled-components";
 
-interface Props {
+interface IProps {
   isDarkMode: boolean;
   updateIsDarkMode: (arg0: boolean) => void;
 }
 
-interface StyledProps {
+interface IStyledProps {
   isDarkMode: boolean;
 }
 
-const StyledButton = styled.button<StyledProps>`
+const ThemeSwitcher: React.FC<IProps> = ({ isDarkMode, updateIsDarkMode }) => {
+  return (
+    <StyledButton
+      isDarkMode={isDarkMode}
+      onClick={() => updateIsDarkMode(!isDarkMode)}
+    >
+      <i className={`${isDarkMode ? "fas fa-moon" : "fas fa-sun"}`}></i>
+    </StyledButton>
+  );
+};
+
+export default ThemeSwitcher;
+
+const StyledButton = styled.button<IStyledProps>`
   cursor: pointer;
   margin: 0 20px;
   padding: 4px;
@@ -35,16 +48,3 @@ const StyledButton = styled.button<StyledProps>`
     transition: right 0.3s;
   }
 `;
-
-const ThemeSwitcher: React.FC<Props> = ({ isDarkMode, updateIsDarkMode }) => {
-  return (
-    <StyledButton
-      isDarkMode={isDarkMode}
-      onClick={() => updateIsDarkMode(!isDarkMode)}
-    >
-      <i className={`${isDarkMode ? "fas fa-moon" : "fas fa-sun"}`}></i>
-    </StyledButton>
-  );
-};
-
-export default ThemeSwitcher;
