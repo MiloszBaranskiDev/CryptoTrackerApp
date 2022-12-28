@@ -1,9 +1,31 @@
 import styled from "styled-components";
 
-interface Props {
-  currentPeriod: string;
-  updatePeriod: (arg0: string) => void;
+import { EPeriod } from "enums/EPeriod";
+
+interface IProps {
+  currentPeriod: EPeriod;
+  updatePeriod: (arg0: EPeriod) => void;
 }
+
+const PeriodSwitcher: React.FC<IProps> = ({ currentPeriod, updatePeriod }) => {
+  return (
+    <StyledPeriodSwitcher>
+      {(Object.keys(EPeriod) as (keyof typeof EPeriod)[]).map(
+        (period, i: number) => (
+          <StyledPeriod
+            onClick={() => updatePeriod(EPeriod[period])}
+            className={EPeriod[period] === currentPeriod ? "activePeriod" : ""}
+            key={EPeriod[period]}
+          >
+            {EPeriod[period]}
+          </StyledPeriod>
+        )
+      )}
+    </StyledPeriodSwitcher>
+  );
+};
+
+export default PeriodSwitcher;
 
 const StyledPeriodSwitcher = styled.ul`
   display: flex;
@@ -30,26 +52,3 @@ const StyledPeriod = styled.li`
     padding-right: 0;
   }
 `;
-
-const PeriodSwitcher: React.FC<Props> = ({ currentPeriod, updatePeriod }) => {
-  const periods: string[] = ["24h", "1w", "1m", "3m", "6m", "1y", "all"];
-  const currentPeriodIndex: number = periods.findIndex(
-    (period: string) => period === currentPeriod
-  );
-
-  return (
-    <StyledPeriodSwitcher>
-      {periods.map((period: string, i: number) => (
-        <StyledPeriod
-          onClick={() => updatePeriod(period)}
-          className={i === currentPeriodIndex ? "activePeriod" : ""}
-          key={period}
-        >
-          {period}
-        </StyledPeriod>
-      ))}
-    </StyledPeriodSwitcher>
-  );
-};
-
-export default PeriodSwitcher;
