@@ -1,23 +1,44 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import Price from "elements/CryptoItem/Price";
 import Identyfication from "elements/CryptoItem/Identification";
 import Changes from "elements/CryptoItem/Changes";
-import GetCurrencySymbol from "utils/GetCurrencySymbol";
 
-interface Props {
-  crypto: {
-    price?: number;
-    symbol?: string;
-    id?: string;
-    name?: string;
-    icon?: string;
-    priceChange1h?: number;
-    priceChange1d?: number;
-    priceChange1w?: number;
-  };
-  currency: string;
+import GetCurrencySign from "utils/GetCurrencySign";
+
+import { ICryptoItem } from "interfaces/ICryptoItem";
+import { ECurrencySymbol } from "enums/ECurrencySymbol";
+
+interface IProps {
+  crypto: ICryptoItem;
+  currencySymbol: ECurrencySymbol;
 }
+
+const CryptoItem: React.FC<IProps> = ({ crypto, currencySymbol }) => {
+  return (
+    <StyledCryptoItem>
+      <Link to={`/crypto/${crypto.id}`}>
+        <Identyfication
+          symbol={crypto.symbol}
+          name={crypto.name}
+          icon={crypto.icon}
+        />
+        <Price
+          price={crypto.price}
+          currencySymbol={GetCurrencySign(currencySymbol)}
+        />
+        <Changes
+          changeHour={crypto.priceChange1h}
+          changeDay={crypto.priceChange1d}
+          changeWeek={crypto.priceChange1w}
+        />
+      </Link>
+    </StyledCryptoItem>
+  );
+};
+
+export default CryptoItem;
 
 const StyledCryptoItem = styled.div`
   flex-basis: 100%;
@@ -25,13 +46,9 @@ const StyledCryptoItem = styled.div`
   margin-bottom: 20px;
   color: ${(props) => props.theme.colors.typography};
   border-radius: 18px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: border-color 0.3s;
-  &:hover {
-    border-color: ${(props) => props.theme.colors.main};
-  }
   a {
+    border-radius: inherit;
+    border: 2px solid transparent;
     width: 100%;
     display: flex;
     align-items: center;
@@ -39,6 +56,10 @@ const StyledCryptoItem = styled.div`
     text-decoration: none;
     color: unset;
     padding: 20px;
+    transition: border-color 0.3s;
+    &:hover {
+      border-color: ${(props) => props.theme.colors.main};
+    }
   }
   @media (min-width: 500px) {
     width: 49%;
@@ -53,28 +74,3 @@ const StyledCryptoItem = styled.div`
     flex-basis: 24%;
   }
 `;
-
-const CryptoItem: React.FC<Props> = ({ crypto, currency }) => {
-  return (
-    <StyledCryptoItem>
-      <Link to={`/crypto/${crypto.id}`}>
-        <Identyfication
-          symbol={crypto.symbol}
-          name={crypto.name}
-          icon={crypto.icon}
-        />
-        <Price
-          price={crypto.price}
-          currencySymbol={GetCurrencySymbol(currency)}
-        />
-        <Changes
-          changeHour={crypto.priceChange1h}
-          changeDay={crypto.priceChange1d}
-          changeWeek={crypto.priceChange1w}
-        />
-      </Link>
-    </StyledCryptoItem>
-  );
-};
-
-export default CryptoItem;
