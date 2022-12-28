@@ -1,49 +1,25 @@
 import styled from "styled-components";
 
-interface Props {
-  changeHour?: number;
-  changeDay?: number;
-  changeWeek?: number;
+enum EClassName {
+  changeMinus = "changeMinus",
+  changePlus = "changePlus",
 }
 
-const StyledChanges = styled.div`
-  flex-basis: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  p {
-    color: ${(props) => props.theme.colors.typography};
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    font-weight: 600;
-    span:first-child {
-      margin-bottom: 4px;
-      color: ${(props) => props.theme.colors.typography_light};
-      font-weight: 400;
-    }
-    &:nth-child(2) {
-      padding: 0 24px;
-    }
-  }
-  .changeMinus {
-    color: ${(props) => props.theme.colors.red};
-  }
-  .changePlus {
-    color: ${(props) => props.theme.colors.green};
-  }
-`;
+interface IProps {
+  changeHour: number;
+  changeDay: number;
+  changeWeek: number;
+}
 
-const Changes: React.FC<Props> = ({ changeHour, changeDay, changeWeek }) => {
-  const checkChange = (change?: number) => {
+const Changes: React.FC<IProps> = ({ changeHour, changeDay, changeWeek }) => {
+  const checkChange = (change: number) => {
     let className: string;
-    const firstDigit: string = String(change!).charAt(0);
+    const firstDigit: string = String(change).charAt(0);
 
     if (firstDigit === "-") {
-      className = "changeMinus";
-    } else if (firstDigit !== "-" && change! > 0) {
-      className = "changePlus";
+      className = EClassName.changeMinus;
+    } else if (firstDigit !== "-" && change > 0) {
+      className = EClassName.changePlus;
     }
 
     return className!;
@@ -68,3 +44,39 @@ const Changes: React.FC<Props> = ({ changeHour, changeDay, changeWeek }) => {
 };
 
 export default Changes;
+
+const StyledChanges = styled.div`
+  flex-basis: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: ${(props) => props.theme.colors.typography};
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 14px;
+    @media (min-width: 1260px) {
+      font-size: 16px;
+    }
+    span:first-child {
+      margin-bottom: 4px;
+      color: ${(props) => props.theme.colors.typography_light};
+      font-weight: 400;
+    }
+    &:nth-child(2) {
+      padding: 0 16px;
+      @media (min-width: 1260px) {
+        padding: 0 24px;
+      }
+    }
+  }
+  .changeMinus {
+    color: ${(props) => props.theme.colors.red};
+  }
+  .changePlus {
+    color: ${(props) => props.theme.colors.green};
+  }
+`;
