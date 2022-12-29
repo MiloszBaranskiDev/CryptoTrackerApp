@@ -31,5 +31,5 @@ An app that displays cryptocurrency prices, their percentage changes and histori
 
 ![home_dark](https://user-images.githubusercontent.com/66494943/165187187-f11165f4-808a-4067-adab-0d99ef8be5a9.png)
 ![single_dark](https://user-images.githubusercontent.com/66494943/165187193-720a698b-77f7-4379-90a0-7264337b4238.png)
-![home_light](https://user-images.githubusercontent.com/66494943/165187200-b04d6b2b-5f1b-459c-ac0e-62115b7f6ca7.png)
-![single_light](https://user-images.githubusercontent.com/66494943/165187235-4d015b0a-0759-423e-a594-c23c1f1d1cff.png)
+![n1](https://user-images.githubusercontent.com/66494943/209887620-cf71a7a1-fa61-4465-8d38-66de0da3b230.png)
+![n2](https://user-images.githubusercontent.com/66494943/209887629-4b8de636-f25a-4590-8e94-201419bd5133.png)
